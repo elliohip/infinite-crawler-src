@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "test",
-    "build": "webpack && bash prepare_assets.sh",
+    "build": "npm install && webpack && bash prepare_assets.sh",
     "start": "webpack serve"
   },
   "author": "Elliot Hipski",
