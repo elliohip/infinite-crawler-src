@@ -1,0 +1,50 @@
+# .gitignore for Phaser.js Project
+
+# Node.js and npm
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Build output (e.g., from webpack)
+dist/
+build/
+public/  # If you use this as your output dir
+out/
+
+# Temporary files and logs
+*.log
+*.tmp
+temp/
+tmp/
+*.swp
+*.swo
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Editor/IDE specific
+.idea/      # IntelliJ IDEA
+.vscode/    # Visual Studio Code
+*.suo       # Visual Studio
+*.njsproj  # Visual Studio
+*.sln      # Visual Studio
+/out/       # Visual Studio
+/obj/       # Visual Studio
+/bin/       # Visual Studio
+.project    # Eclipse
+.settings   # Eclipse
+/target/    # Maven
+/build/     # Gradle
+.history    # QtCreator
+*.userprefs # Rider
+.Rproj.user # RStudio
+
+# Phaser cache files (if any - check your project)
+# phaser-cache/
+
+#  Package manager specific
+package-lock.json
+yarn.lock
+
+# OS generated files
+._*
+./prepare_assets.sh
