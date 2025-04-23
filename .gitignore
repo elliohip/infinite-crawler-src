@@ -8,7 +8,7 @@ yarn-error.log
 # Build output (e.g., from webpack)
 dist/
 build/
-public/  # If you use this as your output dir
+
 out/
 
 # Temporary files and logs
