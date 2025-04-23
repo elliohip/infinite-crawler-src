@@ -74,12 +74,12 @@ module.exports = {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
-  resolve: {
+  /*resolve: {
     modules: [path.resolve(__dirname, 'node_modules')],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       'phaser': path.join(__dirname, '/node_modules/phaser/dist/phaser.js')
     }
-  },
+  },*/
   mode: 'development',
 };
