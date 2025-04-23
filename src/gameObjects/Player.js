@@ -137,38 +137,24 @@ export default class Player extends Entity {
     }
 
     checkLeft(cursors) {
-        if (this.scene.akey != null) {
-            
-            return this.scene.akey.isDown
-            
-        } 
-        else return cursors.left.isDown
+                
+        return this.scene.akey.isDown
         
     }
 
     checkRight(cursors) {
-        if (this.scene.dkey != null) {
-            
-            return this.scene.dkey.isDown
-
-        } 
-        else return cursors.right.isDown
-        
+        return this.scene.dkey.isDown
     }
+
     checkDown(cursors) {
-        if (this.scene.skey != null) {
-            return this.scene.skey.isDown
-        }
-        else return cursors.down.isDown
+        
+        return this.scene.skey.isDown
+        
     }
     checkUp(cursors) {
-        if (this.scene.wkey != null) {
-        
-            return this.scene.wkey.isDown
-            
-        } 
-        else return cursors.up.isDown
-        
+
+        return this.scene.wkey.isDown
+
     }
 
     checkInput() {
