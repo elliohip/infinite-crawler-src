@@ -9,10 +9,10 @@ export default class PlayerWalkState extends PlayerState {
     }
 
     onUpdate() {
-        this.gameobject.anims.play(ANIMATION.player.vamp_walk.key, true)
+        this.gameobject.anims.play(ANIMATION.player.player_walk.key, true)
     }
 
     onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.vamp_walk.key, false)
+        this.gameobject.anims.play(ANIMATION.player.player_walk.key, false)
     }
 }

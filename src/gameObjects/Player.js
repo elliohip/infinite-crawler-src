@@ -21,13 +21,31 @@ export default class Player extends Entity {
     direction = 'right'
     axisVector = new Phaser.Math.Vector2(0,0)
     isAttacking = false
+    coinCount = 0
+    spawnPoint = new Phaser.Math.Vector2(0,0)
+    healthPotionCt = 0
+    manaPotionCt = 0
+    current_mana = 100
+    max_mana = 100
+    canInteract = false
 
     constructor(scene, x, y, spriteId) {
-        super(scene, x, y, ASSETS.spritesheet.player.vamp_idle.key, spriteId);
+        super(scene, x, y, ASSETS.spritesheet.player.player_idle.key, spriteId);
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        this.manaRechargeFrequency = 3 * 1000
+        this.manaRechargeIncrement = 1
+        
+        
+        setInterval(this.manaRechargeCallback, this.manaRechargeFrequency)
+        
 
-        this.setCollideWorldBounds(true); // prevent ship from leaving the screen
+
+        // this.setCollideWorldBounds(true); // prevent ship from leaving the screen
+        this.body.width = 7
+        this.body.height = 14
+        this.setOffset(11, 14)
+        // console.log(`${this.body.x}, ${this.body.y}`)
         this.setDepth(1); // make ship appear on top of other game objects
         this.scene = scene;
         this.setMaxVelocity(this.velocityMax); // limit maximum speed of ship
@@ -36,6 +54,18 @@ export default class Player extends Entity {
         
     }
 
+    manaRechargeCallback() {
+        this.current_mana += this.manaRechargeIncrement
+        if (this.current_mana > this.max_mana) {
+            this.current_mana = this.max_mana
+        }
+    }
+    updateMana(val) {
+        this.current_mana += val
+        if (this.current_mana > this.max_mana) {
+            this.current_mana = this.max_mana
+        }
+    }
     load_animation(animation_config, asset_config) {
         return this.anims.create({
             key: animation_config.key,
@@ -50,6 +80,8 @@ export default class Player extends Entity {
 
 
     preload() {
+        //this.body.x = this.body.x - 20
+        //this.body.y = this.body.y - 20
         this.createAnimations()
         
         let idlestate = new PlayerIdleState(this)
@@ -76,7 +108,13 @@ export default class Player extends Entity {
     update() {
         
         this.statemachine.update()
-        
+        if (this.direction == 'left'){
+            this.setOffset(15, 14)
+        }
+        else {
+            this.setOffset(11, 14)
+        }
+        // console.log(`${this.body.x}, ${this.body.y}`)
     }
 
     setPosition(x, y, z, w) {
@@ -226,8 +264,13 @@ export default class Player extends Entity {
 
 
     createAnimations() {
-        let vamp_idle_anim = this.load_animation(ANIMATION.player.vamp_idle, ASSETS.spritesheet.player.vamp_idle)
-        let vamp_walk_anim = this.load_animation(ANIMATION.player.vamp_walk, ASSETS.spritesheet.player.vamp_walk)
-        let vamp_attack_anim = this.load_animation(ANIMATION.player.vamp_attack, ASSETS.spritesheet.player.vamp_attack)
+        let player_idle_anim = this.load_animation(ANIMATION.player.player_idle, ASSETS.spritesheet.player.player_idle)
+        let player_walk_anim = this.load_animation(ANIMATION.player.player_walk, ASSETS.spritesheet.player.player_walk)
+        let player_attack_anim = this.load_animation(ANIMATION.player.player_attack, ASSETS.spritesheet.player.player_attack)
+    }
+
+    incrementManaPotion(val) {
+        this.manaPotionCt += val
+        this.scene.updateManaPotionCt(val)
     }
 }

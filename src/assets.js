@@ -13,21 +13,21 @@ export default {
     // },
     'spritesheet': {
         player: {
-            vamp_idle: {
+            player_idle: {
                 key: 'VampIdle',
                 args: ['assets/EnemyAnimations/enemies-vampire_idle.png', {
                     frameWidth: 32,
                     frameHeight: 32,
                 }]
             },
-            vamp_walk: {
+            player_walk: {
                 key: 'VampWalk',
                 args: ['assets/EnemyAnimations/enemies-vampire_movement.png', {
                     frameWidth: 32,
                     frameHeight: 32
                 }]
             },
-            vamp_attack: {
+            player_attack: {
                 key: "VampAttack",
                 args: ['assets/EnemyAnimations/enemies-vampire_attack.png', {
                     frameWidth: 32,
@@ -38,9 +38,16 @@ export default {
         world: {
             tiles: {
                 key: 'maptiles1',
-                args: ['assets/Levels/dungeon-tilemap1_total.png', {
+                args: ['assets/Levels/dungeon-tilemap1.png', {
                     frameWidth: 16,
                     frameHeight: 16
+                }]
+            },
+            dungeon_tiles: {
+                key: "dungTiles",
+                args: ['assets/Dungeon_Tileset.png', {
+                    frameHeight: 16,
+                    frameWidth: 16
                 }]
             }
         },
@@ -49,7 +56,7 @@ export default {
         levels: {
             levelInit: {
                 key: 'img-level0',
-                args: ['assets/Levels/dungeon-tilemap1_total.png']
+                args: ['assets/Dungeon_Tileset.png']
             }
         }
     } 

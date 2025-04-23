@@ -9,10 +9,10 @@ export default class PlayerIdleState extends PlayerState {
     }
 
     onUpdate() {
-        this.gameobject.anims.play(ANIMATION.player.vamp_idle.key, true)
+        this.gameobject.anims.play(ANIMATION.player.player_idle.key, true)
     }
 
     onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.vamp_idle.key, false)
+        this.gameobject.anims.play(ANIMATION.player.player_idle.key, false)
     }
 }

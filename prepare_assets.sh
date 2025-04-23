@@ -1,2 +1,2 @@
-mkdir ./dist/assets
-cp -r ./assets/* ./dist/assets
+mkdir ./public/dist/assets
+cp -r ./assets/* ./public/dist/assets

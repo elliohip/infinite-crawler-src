@@ -15,9 +15,20 @@ const gameconfig = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false,
-            gravity: { y: 0 }
-        }
+            debug: true,
+            gravity: { y: 0 },
+            checkCollision: {
+                        up: true,
+                        down: true,
+                        left: true,
+                        right: true
+                    }
+        }, 
+        /*default: 'matter',
+        matter: {
+            debug: true,
+            gravity: {y:0}
+        }*/
     },
     scene: [
         Boot,

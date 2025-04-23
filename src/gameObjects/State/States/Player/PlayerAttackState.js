@@ -16,11 +16,11 @@ export default class PlayerAttackState extends PlayerState {
         }
     }
     onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.vamp_attack);
+        this.gameobject.anims.play(ANIMATION.player.player_attack);
         this.gameobject.isAttacking = true
         let obj_ref = this.gameobject
         this.gameobject.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function () {
-            console.log(obj_ref.anims.getName())
+            // console.log(obj_ref.anims.getName())
             
             obj_ref.isAttacking = false
             
