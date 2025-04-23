@@ -6,7 +6,13 @@
   "scripts": {
     "test": "test",
     "build": "npm install && webpack && bash prepare_assets.sh",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elliohip/infinite-crawler-src.git"
   },
   "author": "Elliot Hipski",
   "license": "ISC",
