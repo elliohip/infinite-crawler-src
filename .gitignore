@@ -6,7 +6,7 @@ npm-debug.log*
 yarn-error.log
 
 # Build output (e.g., from webpack)
-dist/
+# dist/
 build/
 
 out/
