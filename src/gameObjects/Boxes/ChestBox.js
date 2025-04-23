@@ -5,16 +5,23 @@ import InteractBox from '../Boxes/InteractBox'
 
 export default class ChestBox extends Phaser.Physics.Arcade.Sprite {
 
-    constructor(scene, x, y, value, w, h, chestType, item) {
-        super(scene, x, y, ASSETS.spritesheet.world.dungeon_tiles.key, 86);
+    constructor(scene, x, y, value, w, h, chestType, item, sprite_id) {
+        
         // this.id = Phaser.Math.RND.uuid()
         this.width = w 
         this.height = h
-        scene.add.existing(this);
-        scene.physics.add.existing(this);
         this.value = value
 
         this.interactBox = new InteractBox(scene, x, y, this, w * 3, h * 3)
+
+        switch (chestType) {
+            case OBJECT_TYPES.MED_WOOD_CHEST: 
+                this.sprite_id = 83
+                break;
+        }
+        super(scene, x, y, ASSETS.spritesheet.world.dungeon_tiles.key, sprite_id);
+        scene.add.existing(this);
+        scene.physics.add.existing(this);
         
     }
     create() {

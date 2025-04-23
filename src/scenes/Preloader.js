@@ -32,6 +32,7 @@ export class Preloader extends Phaser.Scene {
 
     preload() {
         //  Load the assets for the game - see ./src/assets.js
+        this.load.font('publicPixel', "./assets/Fonts/PublicPixel-rv0pA.ttf", "truetype")
         for (let type in ASSETS) {
             for (let type2 in ASSETS[type]) {
                 console.log(ASSETS[type])
@@ -44,7 +45,6 @@ export class Preloader extends Phaser.Scene {
                 }
             }
         }
-        this.load.font('publicPixel', "/assets/Fonts/PublicPixel-rv0pA.ttf", "truetype")
     }
 
     create() {

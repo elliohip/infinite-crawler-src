@@ -9,6 +9,7 @@ import config from '../../config.js';
 import PlayerAttackState from './State/States/Player/PlayerAttackState.js';
 import Entity from './Entity.js';
 
+
 export default class Player extends Entity {
     velocityIncrement = config.player.speedDelta;
     velocityMax = config.player.maxSpeed;
@@ -137,13 +138,14 @@ export default class Player extends Entity {
     }
 
     checkLeft(cursors) {
-                
+
         return this.scene.akey.isDown
         
     }
 
     checkRight(cursors) {
         return this.scene.dkey.isDown
+        
     }
 
     checkDown(cursors) {

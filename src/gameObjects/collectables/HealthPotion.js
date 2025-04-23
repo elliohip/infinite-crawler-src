@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import ASSETS from '../../assets';
+import PlayerMagnetBox from '../Boxes/PlayerMagnetBox';
 
 export default class HealthPotion extends Phaser.Physics.Arcade.Sprite {
 
@@ -11,7 +12,7 @@ export default class HealthPotion extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.value = value
-        
+        this.magnetBox = new PlayerMagnetBox(scene, x, y, Phaser.Math.RND.uuid(), w * 2, h * 2)
     }
     create() {
         let prev_width = this.body.width

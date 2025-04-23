@@ -14,22 +14,22 @@ export default {
     'spritesheet': {
         player: {
             player_idle: {
-                key: 'VampIdle',
-                args: ['assets/EnemyAnimations/enemies-vampire_idle.png', {
+                key: 'PlayerIdle',
+                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Idle.png', {
                     frameWidth: 32,
                     frameHeight: 32,
                 }]
             },
             player_walk: {
-                key: 'VampWalk',
-                args: ['assets/EnemyAnimations/enemies-vampire_movement.png', {
+                key: 'PlayerWalk',
+                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Walk.png', {
                     frameWidth: 32,
                     frameHeight: 32
                 }]
             },
             player_attack: {
-                key: "VampAttack",
-                args: ['assets/EnemyAnimations/enemies-vampire_attack.png', {
+                key: "PlayerAttack",
+                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Attack.png', {
                     frameWidth: 32,
                     frameHeight: 32
                 }]

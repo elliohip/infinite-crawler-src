@@ -81,5 +81,7 @@ module.exports = {
       'phaser': path.join(__dirname, '/node_modules/phaser/dist/phaser.js')
     }
   },*/
+
+  // mode: 'production',
   mode: 'development',
 };

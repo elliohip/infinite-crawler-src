@@ -14,6 +14,7 @@ import StaticWall from '../gameObjects/Invisible/StaticWall.js';
 import ManaPotion from '../gameObjects/collectables/ManaPotion.js';
 import OBJECT_TYPES from "../object_types.js"
 import ChestBox from '../gameObjects/Boxes/ChestBox.js';
+import HealthPotion from '../gameObjects/collectables/HealthPotion.js';
 
 
 export class Game extends Phaser.Scene {
@@ -100,7 +101,7 @@ export class Game extends Phaser.Scene {
     initGameUi() {
         // Create tutorial text
         this.tutorialText = this.add.text(this.centreX, this.centreY, 'Tap\n(or press space)\nto\nattack and start!', {
-            fontFamily: 'publicPixel', fontSize: 14, color: '#ffffff',
+            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
@@ -109,25 +110,25 @@ export class Game extends Phaser.Scene {
 
         // Create score text
         this.scoreText = this.add.text(20, 20, '$0', {
-            fontFamily: 'publicPixel', fontSize: 12, color: '#ffffff',
+            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
         
         this.healthPotionText = this.add.text(40, 20, '0x', {
-            fontFamily: 'publicPixel', fontSize: 12, color: '#ffffff',
+            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
         
         this.manaPotionText = this.add.text(60, 20, '0x', {
-            fontFamily: 'publicPixel', fontSize: 12, color: '#ffffff',
+            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
 
         this.interactButtonText = this.add.text(60, 20, "'e'", {
-            fontFamily: 'publicPixel', fontSize: 14, color: '#ffffff',
+            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
@@ -231,7 +232,7 @@ export class Game extends Phaser.Scene {
                     let obj_ref = map.objects[i].objects[j]
 
                     if (obj_ref.type == OBJECT_TYPES.MED_WOOD_CHEST) {
-                        this.add
+                        this.addChest(obj_ref.type, obj_ref.x, obj_ref.y, obj_ref.width, obj_ref.height,)
                     }
                 }
                 break;
@@ -270,6 +271,10 @@ export class Game extends Phaser.Scene {
                 case OBJECT_TYPES.MANA_POTION:
                     this.addManaPotion(data.x, data.y)
                     break;
+                case OBJECT_TYPES.HEALTH_POTION:
+                    this.addHealthPotion(data.x, data.y)
+                    break;
+                
             }
         }
     }
@@ -361,6 +366,29 @@ export class Game extends Phaser.Scene {
 
     }
 
+    addHealthPotion(x,y) {
+        console.log('new mana potion')
+        let healthPotion = new HealthPotion(this, x, y, Phaser.Math.RND.uuid(), 1)
+        healthPotion.create()
+        this.healthPotionGroup.add(healthPotion)
+        this.physics.add.overlap(this.player, healthPotion, () => {
+            healthPotion.destroy()
+            this.player.incrementHealthPotion(1)
+        }, null, this)
+
+        healthPotion.magnetBox.alpha = 0
+
+        this.physics.add.overlap(this.player, healthPotion.magnetBox, () => {
+            let goto_vector = (new Phaser.Math.Vector2(this.player.x, this.player.y))
+            .subtract(new Phaser.Math.Vector2(healthPotion.x, healthPotion.y))
+
+            goto_vector.normalize().scale(healthPotion.magnetBox.increment)
+            
+            healthPotion.setPosition(healthPotion.x + (goto_vector.x), healthPotion.y + (goto_vector.y))
+        }, null, this)
+
+    }
+
     hitPlayer(player, obstacle) {
         this.addExplosion(player.x, player.y);
         player.hit(obstacle.getPower());
@@ -398,9 +426,9 @@ export class Game extends Phaser.Scene {
         this.gameOverText.setVisible(true);
     }
 
-    addChest(type, x, y, w, h, chestType, item) {
+    addChest(chestType, x, y, w, h, item) {
         let chest = new ChestBox(this, x, y, w, h, chestType, item)
-
+        
     }
 
     

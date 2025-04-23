@@ -10,11 +10,29 @@ export default {
         }
     },
     player: {
-        'player_idle': {
-            key : 'player-idle',
+        'player_idle_down': {
+            key : 'player-idle-down',
             texture: ASSETS.spritesheet.player.player_idle.key,
             frameRate: 10,
-            config: {start: 0, end: 4}
+            config: {start: 0, end: 0}
+        },
+        'player_idle_up': {
+            key: "player-dile-down",
+            texture: ASSETS.spritesheet.player.player_idle.key,
+            frameRate: 10,
+            config: {start: 1, end: 1}
+        },
+        'player_idle_left': {
+            key: "player-idle-left",
+            texture: ASSETS.spritesheet.player.player_idle.key,
+            frameRate: 10,
+            config: {start: 2, end: 2}
+        },
+        'player_idle_right': {
+            key: "player-idle-left",
+            texture: ASSETS.spritesheet.player.player_idle.key,
+            frameRate: 10,
+            config: {start: 3, end: 3}
         },
         'player_walk': {
             key: 'player-walk',
@@ -26,7 +44,7 @@ export default {
             key: 'player-attack',
             texture: ASSETS.spritesheet.player.player_attack.key,
             frameRate: 16,
-            config: {start: 0, end: 15}
+            config: {start: 0, end: 4}
         }
     }
 };
