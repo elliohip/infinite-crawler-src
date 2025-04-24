@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
+// const { default: current_mode } = require('./current_mode');
+
+
 module.exports = {
   // Entry points for the application.
   entry: {
