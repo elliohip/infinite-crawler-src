@@ -6,13 +6,11 @@ export default class PlayerIdleState extends PlayerState {
 
     constructor(player) {
         super(player, STATES.player.PLAYER_IDLE)
+
+        this.animDown = ANIMATION.player.player_idle_down
+        this.animUp = ANIMATION.player.player_idle_up
+        this.animSide = ANIMATION.player.player_idle_side
+        this.currAnim = ANIMATION.player.player_idle_side
     }
 
-    onUpdate() {
-        this.gameobject.anims.play(ANIMATION.player.player_idle.key, true)
-    }
-
-    onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.player_idle.key, false)
-    }
 }

@@ -101,7 +101,7 @@ export class Game extends Phaser.Scene {
     initGameUi() {
         // Create tutorial text
         this.tutorialText = this.add.text(this.centreX, this.centreY, 'Tap\n(or press space)\nto\nattack and start!', {
-            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
@@ -110,32 +110,32 @@ export class Game extends Phaser.Scene {
 
         // Create score text
         this.scoreText = this.add.text(20, 20, '$0', {
-            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
         
         this.healthPotionText = this.add.text(40, 20, '0x', {
-            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
         
         this.manaPotionText = this.add.text(60, 20, '0x', {
-            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
 
         this.interactButtonText = this.add.text(60, 20, "'e'", {
-            fontFamily: 'publicPixel', fontSize: 10, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 10, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
         })
             .setDepth(100);
 
         // Create game over text
         this.gameOverText = this.add.text(this.scale.width * 0.5, this.scale.height * 0.5, 'Game Over', {
-            fontFamily: 'publicPixel', fontSize: 24, color: '#ffffff',
+            fontFamily: 'Arial', fontSize: 24, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
@@ -159,6 +159,7 @@ export class Game extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.enemyAttackBoxGroup, this.hitPlayer, null, this);
         this.physics.add.overlap(this.playerAttackBoxGroup, this.enemyGroup, this.hitEnemy, null, this);
         this.physics.add.overlap(this.player, this.enemyGroup, this.hitPlayer, null, this);
+        
     }
 
     initPlayer() {
@@ -246,7 +247,7 @@ export class Game extends Phaser.Scene {
         // collisionLayer.setCollision(true)
 
         // this.physics.add.collider(this.player, onGround_layer)
-        this.physics.add.collider(this.player, collisionLayer)
+        // this.physics.add.collider(this.player, collisionLayer)
 
         const debugGraphics = this.add.graphics().setAlpha(0.75);
 
@@ -352,7 +353,6 @@ export class Game extends Phaser.Scene {
             manaPotion.destroy()
             this.player.incrementManaPotion(1)
         }, null, this)
-
         manaPotion.magnetBox.alpha = 0
 
         this.physics.add.overlap(this.player, manaPotion.magnetBox, () => {

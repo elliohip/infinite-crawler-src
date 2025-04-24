@@ -7,24 +7,27 @@ export default class PlayerAttackState extends PlayerState {
 
     constructor(player) {
         super(player, STATES.player.PLAYER_ATTACK)
-        this.startTime = Date.now()
+        this.animDown = ANIMATION.player.player_attack_down
+        this.animUp = ANIMATION.player.player_attack_up
+        this.animSide = ANIMATION.player.player_attack_side
+        // this.currAnim = ANIMATION.player.player_attack_down
     }
 
     onUpdate() {
+        super.onUpdate()
+        if (Phaser.Animations.Events.ANIMATION_COMPLETE){
+
+            this.gameobject.isAttacking = false
+        }
         if (this.gameobject.isAttacking == false) {
             this.statemachine.setState(STATES.player.PLAYER_IDLE)
         }
     }
     onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.player_attack);
+        super.onEnter()
         this.gameobject.isAttacking = true
-        let obj_ref = this.gameobject
-        this.gameobject.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function () {
-            // console.log(obj_ref.anims.getName())
-            
-            obj_ref.isAttacking = false
-            
-        })
+        
+        
     }
 
 }

@@ -1,4 +1,6 @@
 import ASSETS from './assets.js';
+import Phaser from 'phaser';
+
 
 export default {
     world: {
@@ -13,38 +15,59 @@ export default {
         'player_idle_down': {
             key : 'player-idle-down',
             texture: ASSETS.spritesheet.player.player_idle.key,
-            frameRate: 10,
-            config: {start: 0, end: 0}
+            frameRate: 8,
+            config: {start: 0, end: 2}
         },
         'player_idle_up': {
-            key: "player-dile-down",
+            key: "player-idle-up",
             texture: ASSETS.spritesheet.player.player_idle.key,
-            frameRate: 10,
-            config: {start: 1, end: 1}
+            frameRate: 8,
+            config: {start: 6, end: 8}
         },
-        'player_idle_left': {
-            key: "player-idle-left",
+        'player_idle_side': {
+            key: "player-idle-side",
             texture: ASSETS.spritesheet.player.player_idle.key,
-            frameRate: 10,
-            config: {start: 2, end: 2}
+            frameRate: 8,
+            config: {start: 3, end: 5}
         },
-        'player_idle_right': {
-            key: "player-idle-left",
-            texture: ASSETS.spritesheet.player.player_idle.key,
-            frameRate: 10,
+
+        'player_walk_down': {
+            key: 'player-walk-down',
+            texture: ASSETS.spritesheet.player.player_walk.key,
+            frameRate: 8,
+            config: {start: 0, end: 3}
+        },
+        'player_walk_up': {
+            key: 'player-walk-up',
+            texture: ASSETS.spritesheet.player.player_walk.key,
+            frameRate: 8,
+            config: {start: 8, end: 11}
+        },
+        'player_walk_side': {
+            key: 'player-walk-side',
+            texture: ASSETS.spritesheet.player.player_walk.key,
+            frameRate: 8,
+            config: {start: 4, end: 7}
+        },
+
+        
+        'player_attack_side': {
+            key: 'player-attack-side',
+            texture: ASSETS.spritesheet.player.player_attack.key,
+            frameRate: 2,
             config: {start: 3, end: 3}
         },
-        'player_walk': {
-            key: 'player-walk',
-            texture: ASSETS.spritesheet.player.player_walk.key,
-            frameRate: 10,
-            config: {start: 0, end: 7}
-        },
-        'player_attack': {
-            key: 'player-attack',
+        'player_attack_down': {
+            key: 'player-attack-down',
             texture: ASSETS.spritesheet.player.player_attack.key,
-            frameRate: 16,
-            config: {start: 0, end: 4}
+            frameRate: 2,
+            config: {start: 0, end: 0}
+        },
+        'player_attack_up': {
+            key: 'player-attack-up',
+            texture: ASSETS.spritesheet.player.player_attack.key,
+            frameRate: 2,
+            config: {start: 1, end: 1}
         }
     }
 };

@@ -15,23 +15,23 @@ export default {
         player: {
             player_idle: {
                 key: 'PlayerIdle',
-                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Idle.png', {
-                    frameWidth: 32,
-                    frameHeight: 32,
+                args: ['assets/HumanAnimations/Player/Player-Idle.png', {
+                    frameWidth: 16,
+                    frameHeight: 16,
                 }]
             },
             player_walk: {
                 key: 'PlayerWalk',
-                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Walk.png', {
-                    frameWidth: 32,
-                    frameHeight: 32
+                args: ['assets/HumanAnimations/Player/Player-Walk.png', {
+                    frameWidth: 16,
+                    frameHeight: 16
                 }]
             },
             player_attack: {
                 key: "PlayerAttack",
-                args: ['assets/HumanAnimations/Hunter/SeperateAnim/Attack.png', {
-                    frameWidth: 32,
-                    frameHeight: 32
+                args: ['assets/HumanAnimations/Player/Player-Attack.png', {
+                    frameWidth: 16,
+                    frameHeight: 16
                 }]
             }
         },

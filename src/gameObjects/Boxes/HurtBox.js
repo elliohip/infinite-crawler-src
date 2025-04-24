@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import ASSETS from '../../assets';
 
-export default class  extends Phaser.Physics.Arcade.Sprite {
+export default class hurtBox extends Phaser.Physics.Arcade.Sprite {
 
     constructor(scene, x, y, coin_id, damage, w, h) {
         super(scene, x, y, ASSETS.spritesheet.world.dungeon_tiles.key, 86);
@@ -11,7 +11,7 @@ export default class  extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.damage = damage
-        
+        this.alpha = 0
     }
     create() {
         let prev_width = this.body.width

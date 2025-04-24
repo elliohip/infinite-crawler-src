@@ -8,6 +8,8 @@ import PlayerWalkState from "./State/States/Player/PlayerWalkState.js"
 import config from '../../config.js';
 import PlayerAttackState from './State/States/Player/PlayerAttackState.js';
 import Entity from './Entity.js';
+import Sword from './Weapons/Sword.js'
+import Spell from "./Spells/Spell.js"
 
 
 export default class Player extends Entity {
@@ -19,7 +21,7 @@ export default class Player extends Entity {
     health = config.player.initHealth;
     statemachine = null;
     inputVector = new Phaser.Math.Vector2(0,0)
-    direction = 'right'
+    direction = 'down'
     axisVector = new Phaser.Math.Vector2(0,0)
     isAttacking = false
     coinCount = 0
@@ -36,16 +38,18 @@ export default class Player extends Entity {
         scene.physics.add.existing(this);
         this.manaRechargeFrequency = 3 * 1000
         this.manaRechargeIncrement = 1
-        
+
+        // this.weapon = new Sword(this, x, y, 1, 6, 11, ASSETS.spritesheet.player.player_attack, 0, ANIMATION.player.player_attack)
+        // this.spell = new Spell(this)
         
         setInterval(this.manaRechargeCallback, this.manaRechargeFrequency)
         
 
 
         // this.setCollideWorldBounds(true); // prevent ship from leaving the screen
-        this.body.width = 7
-        this.body.height = 14
-        this.setOffset(11, 14)
+        this.body.width = 9
+        this.body.height = 11
+        this.setOffset(4, 4)
         // console.log(`${this.body.x}, ${this.body.y}`)
         this.setDepth(1); // make ship appear on top of other game objects
         this.scene = scene;
@@ -71,9 +75,9 @@ export default class Player extends Entity {
         return this.anims.create({
             key: animation_config.key,
             frames: this.anims.generateFrameNames(asset_config.key, {
-                start: animation_config.config.start,
-                end: animation_config.config.end,
-                
+                start: animation_config.config.start | null,
+                end: animation_config.config.end | null,
+                frames: animation_config.frames
             }),
             frameRate: animation_config.frameRate
         })
@@ -110,10 +114,10 @@ export default class Player extends Entity {
         
         this.statemachine.update()
         if (this.direction == 'left'){
-            this.setOffset(15, 14)
+            // this.setOffset(15, 14)
         }
         else {
-            this.setOffset(11, 14)
+            // this.setOffset(11, 14)
         }
         // console.log(`${this.body.x}, ${this.body.y}`)
     }
@@ -181,26 +185,35 @@ export default class Player extends Entity {
         if (this.inputVector != null || !this.isAttacking){ 
             this.inputVector.x = moveDirection.x
             this.inputVector.y = moveDirection.y
-
+            
             this.inputVector.normalize()
             // this.inputVector.lerp()
             
-            if (this.inputVector.x < 0 && this.direction == 'right') {
+            this.axisVector = this.getClosestAxisVector(this.inputVector)
+            //console.log(this.axisVector)
+            if (this.axisVector.x < 0 && this.axisVector.y == 0) {
                 this.setFlipX(true)
                 this.direction = 'left'
             } 
-            else if (this.inputVector.x > 0 && this.direction == 'left') {
+            else if (this.axisVector.x > 0 && this.axisVector.y == 0) {
                 this.setFlipX(false)
                 this.direction = 'right'
             }
+            else if (this.axisVector.y < 0 && this.axisVector.x == 0) {
+                this.direction = 'up'
+            }
+            else if (this.axisVector.y > 0 && this.axisVector.x == 0) {
+                this.direction = 'down'
+            }
 
-            this.axisVector = this.getClosestAxisVector(this.inputVector)
-
-            if (this.inputVector.x != 0 || this.inputVector.y != 0) {
+            if ((this.inputVector.x != 0 || this.inputVector.y != 0) && !this.isAttacking) {
                 this.statemachine.setState(STATES.player.PLAYER_WALK)
+
             }
             else {
-                this.statemachine.setState(STATES.player.PLAYER_IDLE)
+                if (!this.isAttacking) {
+                    this.statemachine.setState(STATES.player.PLAYER_IDLE)
+                }
             }
             
             this.body.velocity.x += this.inputVector.x * this.velocityIncrement; // increase horizontal velocity
@@ -252,9 +265,18 @@ export default class Player extends Entity {
 
 
     createAnimations() {
-        let player_idle_anim = this.load_animation(ANIMATION.player.player_idle, ASSETS.spritesheet.player.player_idle)
-        let player_walk_anim = this.load_animation(ANIMATION.player.player_walk, ASSETS.spritesheet.player.player_walk)
-        let player_attack_anim = this.load_animation(ANIMATION.player.player_attack, ASSETS.spritesheet.player.player_attack)
+        let player_idle_up_anim = this.load_animation(ANIMATION.player.player_idle_up, ASSETS.spritesheet.player.player_idle)
+        let player_idle_down_anim = this.load_animation(ANIMATION.player.player_idle_down, ASSETS.spritesheet.player.player_idle)
+        let player_idle_side_anim = this.load_animation(ANIMATION.player.player_idle_side, ASSETS.spritesheet.player.player_idle)
+
+        let player_walk_up_anim = this.load_animation(ANIMATION.player.player_walk_up, ASSETS.spritesheet.player.player_walk)
+        let player_walk_down_anim = this.load_animation(ANIMATION.player.player_walk_down, ASSETS.spritesheet.player.player_walk)
+        let player_walk_side_anim = this.load_animation(ANIMATION.player.player_walk_side, ASSETS.spritesheet.player.player_walk)
+
+        let player_attack_up_anim = this.load_animation(ANIMATION.player.player_attack_up, ASSETS.spritesheet.player.player_attack)
+        let player_attack_down_anim = this.load_animation(ANIMATION.player.player_attack_down, ASSETS.spritesheet.player.player_attack)
+        let player_attack_side_anim = this.load_animation(ANIMATION.player.player_attack_side, ASSETS.spritesheet.player.player_attack)
+
     }
 
     incrementManaPotion(val) {

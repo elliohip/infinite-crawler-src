@@ -6,13 +6,12 @@ export default class PlayerWalkState extends PlayerState {
 
     constructor(player) {
         super(player, STATES.player.PLAYER_WALK)
+
+        this.animDown = ANIMATION.player.player_walk_down
+        this.animUp = ANIMATION.player.player_walk_up
+        this.animSide = ANIMATION.player.player_walk_side
+        // this.currAnim = ANIMATION.player.player_walk_side
     }
 
-    onUpdate() {
-        this.gameobject.anims.play(ANIMATION.player.player_walk.key, true)
-    }
 
-    onEnter() {
-        this.gameobject.anims.play(ANIMATION.player.player_walk.key, false)
-    }
 }
