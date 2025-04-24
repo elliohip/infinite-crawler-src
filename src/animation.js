@@ -55,19 +55,19 @@ export default {
             key: 'player-attack-side',
             texture: ASSETS.spritesheet.player.player_attack.key,
             frameRate: 2,
-            config: {start: 3, end: 3}
+            config: {start: 4, end: 7}
         },
         'player_attack_down': {
             key: 'player-attack-down',
             texture: ASSETS.spritesheet.player.player_attack.key,
             frameRate: 2,
-            config: {start: 0, end: 0}
+            config: {start: 0, end: 3}
         },
         'player_attack_up': {
             key: 'player-attack-up',
             texture: ASSETS.spritesheet.player.player_attack.key,
             frameRate: 2,
-            config: {start: 1, end: 1}
+            config: {start: 8, end: 11}
         }
     }
 };
